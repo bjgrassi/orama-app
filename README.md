@@ -7,6 +7,7 @@
 ### Prerequisites
 Node.js - [click for download](https://nodejs.org/en/)
 
+# Optional
 Yarn - [click for download](https://yarnpkg.com/en/docs/install#windows-stable)
 
 ## Getting Started
@@ -16,11 +17,12 @@ Clone my repo in your computer
 
 ### Installing
 
-```yarn install```
+```yarn install``` or ```npm install```
 
 Run server
+```cd app```
 
-```yarn start```
+```yarn start``` or ```npm start```
 
 ## Built With
 * [Angular CLI](https://angular.io/) - Web framework on version 9.1.7;
