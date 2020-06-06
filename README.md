@@ -27,3 +27,4 @@ Run server
 ## Built With
 * [Angular CLI](https://angular.io/) - Web framework on version 9.1.7;
 * [Foundation](https://get.foundation/) - CSS framework;
+* [API](https://s3.amazonaws.com/orama-media/json/fund_detail_full.json) - Órama Fund Data;
