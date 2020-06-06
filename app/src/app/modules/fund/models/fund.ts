@@ -1,4 +1,5 @@
 export interface Fund {
+  is_closed: boolean,
   simple_name: string;
   quota_date: string;
   profitabilities: {

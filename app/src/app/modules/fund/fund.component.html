@@ -32,13 +32,13 @@
       <tbody>
         <tr *ngFor="let item of funds">
           <td> {{ item.simple_name }} </td>
-          <td> {{ item.quota_date }} </td>
-          <td> {{ item.profitabilities.month }} </td>
-          <td> {{ item.profitabilities.year }} </td>
-          <td> {{ item.profitabilities.m12 }} </td>
-          <td> {{ item.operability.minimum_initial_application_amount }} </td>
+          <td> {{ item.quota_date | date: 'shortDate' }} </td>
+          <td> {{ item.profitabilities.month | number : '1.2-2' }} </td>
+          <td> {{ item.profitabilities.year | number : '1.2-2' }} </td>
+          <td> {{ item.profitabilities.m12 | number : '1.2-2' }} </td>
+          <td> {{ item.operability.minimum_initial_application_amount | number:'0.2':'pt' }} </td>
           <td> icon </td>
-          <td> Btn </td>
+          <td> is_closed </td>
         </tr>
       </tbody>
     </table>
