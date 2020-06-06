@@ -16,7 +16,7 @@
           <th>Fundo</th>
           <th>Data da cota</th>
           <th>Mês (%)</th>
-          <th>2016 (%)</th>
+          <th>2020 (%)</th>
           <th>12M (%)</th>
           <th>Aplicação mínima (R$)</th>
           <th>Prazo do resgate</th>
@@ -30,14 +30,15 @@
         <th colspan="8" class="fund-main-strategy">Indexado Soberano</th>
       </tr>
       <tbody>
-        <tr>
-          <td>Content Goes Here</td>
-          <td>
-            This is longer content Donec id elit non mi porta gravida at eget
-            metus.
-          </td>
-          <td>Content Goes Here</td>
-          <td>Content Goes Here</td>
+        <tr *ngFor="let item of funds">
+          <td> {{ item.simple_name }} </td>
+          <td> {{ item.quota_date }} </td>
+          <td> {{ item.profitabilities.month }} </td>
+          <td> {{ item.profitabilities.year }} </td>
+          <td> {{ item.profitabilities.m12 }} </td>
+          <td> {{ item.operability.minimum_initial_application_amount }} </td>
+          <td> icon </td>
+          <td> Btn </td>
         </tr>
       </tbody>
     </table>
