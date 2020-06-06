@@ -7,7 +7,7 @@
 ### Prerequisites
 Node.js - [click for download](https://nodejs.org/en/)
 
-# Optional
+#### Optional
 Yarn - [click for download](https://yarnpkg.com/en/docs/install#windows-stable)
 
 ## Getting Started
