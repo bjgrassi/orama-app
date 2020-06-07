@@ -26,9 +26,11 @@ export interface Fund {
     fund_type: string,
     fund_class: string,
     fund_macro_strategy: {
+      id: number,
       name: string
     },
     fund_main_strategy: {
+      id: number,
       name: string
     }
   }

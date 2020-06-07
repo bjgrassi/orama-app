@@ -10,38 +10,36 @@
       />
       <i ng-click="searchInput()" class="mdi mdi-magnify float-right"></i>
     </div>
-    <table class="hover unstriped">
-      <thead>
-        <tr>
-          <th>Fundo</th>
-          <th>Data da cota</th>
-          <th>Mês (%)</th>
-          <th>2020 (%)</th>
-          <th>12M (%)</th>
-          <th>Aplicação mínima (R$)</th>
-          <th>Prazo do resgate</th>
-          <th>Aplicar</th>
-        </tr>
-      </thead>
-      <tr class="">
-        <th colspan="8" class="fund-macro-strategy">Renda Fixa</th>
-      </tr>
-      <tr class="">
-        <th colspan="8" class="fund-main-strategy">Indexado Soberano</th>
-      </tr>
-      <tbody>
-        <tr *ngFor="let item of funds">
-          <td> {{ item.simple_name }} </td>
-          <td> {{ item.quota_date | date: 'shortDate' }} </td>
-          <td> {{ item.profitabilities.month | number : '1.2-2' }} </td>
-          <td> {{ item.profitabilities.year | number : '1.2-2' }} </td>
-          <td> {{ item.profitabilities.m12 | number : '1.2-2' }} </td>
-          <td> {{ item.operability.minimum_initial_application_amount | number:'0.2':'pt' }} </td>
-          <td> icon </td>
-          <td> is_closed </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table">
+      <div class="grid-x table-header">
+        <div class="columns small-4">Fundo</div>
+        <div class="columns small-1">Data da cota</div>
+        <div class="columns small-1">Mês (%)</div>
+        <div class="columns small-1">2020 (%)</div>
+        <div class="columns small-1">12M (%)</div>
+        <div class="columns small-2">Aplicação mínima (R$)</div>
+        <div class="columns small-1">Prazo do resgate</div>
+        <div class="columns small-1">Aplicar</div>
+      </div>
+      <div class="fund-macro-strategy" *ngFor="let macro of macroStrategyFundsKeys">
+        <div class="" *ngIf="macro == 'Renda Fixa'">
+          <div class="title-macro">{{ macro }}</div>
+          <div class="fund-main-strategy" *ngFor="let main of mainStrategyFundsKeys">
+            <div class="title-main">{{ main }}</div>
+            <div class="grid-x" *ngFor="let item of mainStrategyFunds[main]">
+              <div class="columns small-4">{{ item.simple_name }}</div>
+              <div class="columns small-1">{{ item.quota_date | date: 'shortDate' }}</div>
+              <div class="columns small-1">{{ item.profitabilities.month | number : '1.2-2' }}</div>
+              <div class="columns small-1">{{ item.profitabilities.year | number : '1.2-2' }}</div>
+              <div class="columns small-1">{{ item.profitabilities.m12 | number : '1.2-2' }}</div>
+              <div class="columns small-2">{{ item.operability.minimum_initial_application_amount | number:'0.2':'pt' }}</div>
+              <div class="columns small-1">icon</div>
+              <div class="columns small-1">is_closed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="cell large-3 medium-2 small-12 columns hide-for-small-only">
     TODO

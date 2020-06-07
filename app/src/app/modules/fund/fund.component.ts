@@ -9,17 +9,52 @@ import { Fund } from './models/fund';
   styleUrls: ['./fund.component.scss'],
 })
 export class FundComponent implements OnInit {
-  public funds: Fund[];
+  public macroStrategyFunds: Object;
+  public macroStrategyFundsKeys: any[] = [];
+  public mainStrategyFunds: Object;
+  public mainStrategyFundsKeys: any[] = [];
 
-  constructor(public fundService: FundService) {}
+  constructor(private fundService: FundService) {}
 
   ngOnInit(): void {
-    this.getAllFunds();
+    this.getAllFixedIncomeFund();
   }
 
-  private getAllFunds(): void {
+  private getAllFixedIncomeFund() {
     this.fundService.getAllFunds().subscribe((result: Fund[]) => {
-      this.funds = result
+      this.macroStrategyFunds = this.groupByStrategy(result, false);
+      this.macroStrategyFundsKeys = this.getStrategyKeyNames(this.macroStrategyFunds)
+      this.mainStrategyFunds = this.groupByStrategy(result, true);
+      this.mainStrategyFundsKeys = this.getStrategyKeyNames(this.mainStrategyFunds)
     });
+  }
+
+  private groupByStrategy(objectArray: Fund[], isMacroStrategy: boolean): Object {
+    let newObject = {},
+        key: string;
+    objectArray.forEach((fund) => {
+      if(isMacroStrategy){
+        key = fund.specification.fund_main_strategy.name;
+      } else {
+        key = fund.specification.fund_macro_strategy.name;
+      }
+      if (!newObject[key]) {
+        newObject[key] = [];
+      }
+      newObject[key].push(fund);
+    });
+    return newObject;
+  }
+
+  private getStrategyKeyNames(strategy: Object): String[] {
+    let keyNames = [],
+        count = 0;
+    for (let key in strategy) {
+      if(strategy.hasOwnProperty(key)) {
+        keyNames[count] = key;
+        count += 1;
+      }
+    }
+    return keyNames
   }
 }
