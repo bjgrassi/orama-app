@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FundService } from './fund.service';
-import { Fund } from './models/fund';
+import { FundService } from '../fund.service';
+import { Fund } from '../models/fund';
 
 @Component({
-  selector: 'app-fund',
-  templateUrl: './fund.component.html',
-  styleUrls: ['./fund.component.scss'],
+  selector: 'app-fund-list',
+  templateUrl: './fund-list.component.html',
+  styleUrls: ['./fund-list.component.css']
 })
-export class FundComponent implements OnInit {
+export class FundListComponent implements OnInit {
   public macroStrategyFunds: Object;
   public macroStrategyFundsKeys: any[] = [];
   public mainStrategyFunds: Object;
