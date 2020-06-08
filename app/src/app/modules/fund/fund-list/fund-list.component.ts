@@ -6,7 +6,7 @@ import { Fund } from '../models/fund';
 @Component({
   selector: 'app-fund-list',
   templateUrl: './fund-list.component.html',
-  styleUrls: ['./fund-list.component.css']
+  styleUrls: ['./fund-list.component.scss']
 })
 export class FundListComponent implements OnInit {
   public macroStrategyFunds: Object;
@@ -33,11 +33,8 @@ export class FundListComponent implements OnInit {
     let newObject = {},
         key: string;
     objectArray.forEach((fund) => {
-      if(isMacroStrategy){
-        key = fund.specification.fund_main_strategy.name;
-      } else {
-        key = fund.specification.fund_macro_strategy.name;
-      }
+      key = isMacroStrategy ? 
+            fund.specification.fund_main_strategy.name : fund.specification.fund_macro_strategy.name;
       if (!newObject[key]) {
         newObject[key] = [];
       }
