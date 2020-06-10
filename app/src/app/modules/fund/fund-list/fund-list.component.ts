@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FundService } from '../fund.service';
 import { Fund } from '../models/fund';
+import * as Strategies from '../models/strategyList';
 
 @Component({
   selector: 'app-fund-list',
@@ -9,49 +10,35 @@ import { Fund } from '../models/fund';
   styleUrls: ['./fund-list.component.scss']
 })
 export class FundListComponent implements OnInit {
-  public macroStrategyFunds: Object;
-  public macroStrategyFundsKeys: any[] = [];
-  public mainStrategyFunds: Object;
-  public mainStrategyFundsKeys: any[] = [];
-
+  public macroStrategyFunds: Strategies.MacroStrategy[];
+  
   constructor(private fundService: FundService) {}
 
   ngOnInit(): void {
-    this.getAllFixedIncomeFund();
-  }
-
-  private getAllFixedIncomeFund() {
     this.fundService.getAllFunds().subscribe((result: Fund[]) => {
-      this.macroStrategyFunds = this.groupByStrategy(result, false);
-      this.macroStrategyFundsKeys = this.getStrategyKeyNames(this.macroStrategyFunds)
-      this.mainStrategyFunds = this.groupByStrategy(result, true);
-      this.mainStrategyFundsKeys = this.getStrategyKeyNames(this.mainStrategyFunds)
+      this.macroStrategyFunds = this.groupByStrategy(result);
+      console.log(this.macroStrategyFunds);
     });
   }
 
-  private groupByStrategy(objectArray: Fund[], isMacroStrategy: boolean): Object {
-    let newObject = {},
-        key: string;
-    objectArray.forEach((fund) => {
-      key = isMacroStrategy ? 
-            fund.specification.fund_main_strategy.name : fund.specification.fund_macro_strategy.name;
-      if (!newObject[key]) {
-        newObject[key] = [];
-      }
-      newObject[key].push(fund);
+  private groupByStrategy(fundList: Fund[]): Strategies.MacroStrategy[] {
+    let strategyList = [] as Strategies.MacroStrategy[];
+    fundList.forEach((fund) => {
+      let macroStrategy = fund.specification.fund_macro_strategy;
+      let mainStrategy = fund.specification.fund_main_strategy;
+      
+      if (!strategyList[macroStrategy.id])
+        strategyList[macroStrategy.id] = new Strategies.MacroStrategy(macroStrategy.name, [] as Strategies.MainStrategy[] );
+      if (!strategyList[macroStrategy.id].mainStrategies[mainStrategy.id])
+        strategyList[macroStrategy.id].mainStrategies[mainStrategy.id] = new Strategies.MainStrategy(mainStrategy.name, [] as Fund[]);
+      
+      strategyList[macroStrategy.id].mainStrategies[mainStrategy.id].funds.push(fund);
     });
-    return newObject;
-  }
-
-  private getStrategyKeyNames(strategy: Object): String[] {
-    let keyNames = [],
-        count = 0;
-    for (let key in strategy) {
-      if(strategy.hasOwnProperty(key)) {
-        keyNames[count] = key;
-        count += 1;
-      }
-    }
-    return keyNames
+    strategyList = strategyList.filter(el => el != null);
+    strategyList.forEach(macro => {
+      macro.mainStrategies = macro.mainStrategies.filter(el => el != null);
+      macro.mainStrategies.forEach(main => main.funds = main.funds.filter(el => el != null));
+    });
+    return strategyList;
   }
 }
