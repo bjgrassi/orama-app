@@ -30,10 +30,18 @@
             <div class="columns small-1">{{ item.profitabilities.year | number : '1.2-2' }}</div>
             <div class="columns small-1">{{ item.profitabilities.m12 | number : '1.2-2' }}</div>
             <div class="columns small-2">{{ item.operability.minimum_initial_application_amount | number:'0.2':'pt' }}</div>
-            <div class="columns small-1">icon</div>
-            <div class="columns small-1">is_closed</div>
+            <div class="columns small-1 mdi-reply-circle">icon</div>
+            <ng-container *ngIf="item.is_closed; else elseTemplate">
+              <div class="columns small-1">ok</div>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <div class="columns small-1">nop</div>
+            </ng-template>
           </div>
         </div>
+      </div>
+      <div class="mdi-spin" [hidden]="macroStrategyFunds.length > 0">
+        Carregando...
       </div>
     </div>
   </div>
