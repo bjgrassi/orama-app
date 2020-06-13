@@ -16,10 +16,13 @@ input[type=text] {
     border-width: 0 0 2px;
   }
 }
-
 .table {
   .columns {
     padding: 10px;
+    text-align: right;
+    &.text-left {
+      text-align: left;
+    }
   }
   .fund-macro-strategy {
     .title-macro {

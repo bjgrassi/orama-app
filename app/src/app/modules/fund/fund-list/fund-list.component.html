@@ -10,7 +10,7 @@
     </div>
     <div class="table">
       <div class="grid-x table-header">
-        <div class="columns small-4">Fundo</div>
+        <div class="columns small-4 text-left">Fundo</div>
         <div class="columns small-1">Data da cota</div>
         <div class="columns small-1">Mês (%)</div>
         <div class="columns small-1">2020 (%)</div>
@@ -24,7 +24,7 @@
         <div class="fund-main-strategy" *ngFor="let main of macro.mainStrategies">
           <div class="title-main"> {{ main.name }}</div>
           <div class="grid-x" *ngFor="let item of main.funds">
-            <div class="columns small-4">{{ item.simple_name }}</div>
+            <div class="columns small-4 text-left">{{ item.simple_name }}</div>
             <div class="columns small-1">{{ item.quota_date | date: 'shortDate' }}</div>
             <div class="columns small-1">{{ item.profitabilities.month | number : '1.2-2' }}</div>
             <div class="columns small-1">{{ item.profitabilities.year | number : '1.2-2' }}</div>
