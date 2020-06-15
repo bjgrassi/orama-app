@@ -16,6 +16,7 @@ input[type=text] {
     border-width: 0 0 2px;
   }
 }
+
 .table {
   .columns {
     padding: 10px;
@@ -36,5 +37,10 @@ input[type=text] {
       background: #f4f5f7;
       padding: 10px;
     }
+  }
+  .preloader {
+    display: block;
+    padding: 40px;
+    text-align: center;
   }
 }

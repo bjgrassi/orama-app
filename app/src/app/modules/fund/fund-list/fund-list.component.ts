@@ -10,14 +10,14 @@ import * as Strategies from '../models/strategyList';
   styleUrls: ['./fund-list.component.scss']
 })
 export class FundListComponent implements OnInit {
-  public macroStrategyFunds: Strategies.MacroStrategy[];
+  public searchFund: string;
+  public macroStrategyFunds: Strategies.MacroStrategy[] = [];
   
   constructor(private fundService: FundService) {}
 
   ngOnInit(): void {
     this.fundService.getAllFunds().subscribe((result: Fund[]) => {
       this.macroStrategyFunds = this.groupByStrategy(result);
-      console.log(this.macroStrategyFunds);
     });
   }
 
