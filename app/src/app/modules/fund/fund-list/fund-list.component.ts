@@ -16,6 +16,10 @@ export class FundListComponent implements OnInit {
   constructor(private fundService: FundService) {}
 
   ngOnInit(): void {
+    this.getFundsGroupedByStrategy();
+  }
+
+  private getFundsGroupedByStrategy() {
     this.fundService.getAllFunds().subscribe((result: Fund[]) => {
       this.macroStrategyFunds = this.groupByStrategy(result);
     });
@@ -41,4 +45,5 @@ export class FundListComponent implements OnInit {
     });
     return strategyList;
   }
+  
 }

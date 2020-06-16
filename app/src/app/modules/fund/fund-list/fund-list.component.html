@@ -7,7 +7,6 @@
         placeholder="Busque o fundo por nome"
         [(ngModel)]="searchFund"
       />
-      <!-- <i ng-click="searchInput()" class="mdi mdi-magnify float-right"></i> -->
     </div>
     <div class="table">
       <div class="grid-x table-header">
@@ -21,9 +20,13 @@
         <div class="columns small-1">Aplicar</div>
       </div>
       <div class="fund-macro-strategy" *ngFor="let macro of macroStrategyFunds | inputSearch: searchFund">
-        <div class="title-macro">{{ macro.name }}</div>
+        <div class="title-macro" *ngIf="macro.mainStrategies.length > 0">
+          {{ macro.name }}
+        </div>
         <div class="fund-main-strategy" *ngFor="let main of macro.mainStrategies">
-          <div class="title-main"> {{ main.name }}</div>
+          <div class="title-main" *ngIf="main.funds.length > 0">
+            {{ main.name }}
+          </div>
           <div class="grid-x" *ngFor="let item of main.funds">
             <div class="columns small-4 text-left">{{ item.simple_name }}</div>
             <div class="columns small-1">{{ item.quota_date | date: 'shortDate' }}</div>
@@ -53,7 +56,7 @@
           </div>
         </div>
       </div>
-      <div class="mdi-spin" [hidden]="macroStrategyFunds.length > 0" class="preloader">
+      <div class="mdi-spin" *ngIf="macroStrategyFunds.length == 0" class="preloader">
         <img src="../../../../assets/img/preloader.svg" alt="Carregando...">
       </div>
     </div>
