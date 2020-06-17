@@ -19,11 +19,11 @@
         <div class="columns small-1">Prazo do resgate</div>
         <div class="columns small-1">Aplicar</div>
       </div>
-      <div class="fund-macro-strategy" *ngFor="let macro of macroStrategyFunds | inputSearch: searchFund">
+      <div class="fund-strategies" *ngFor="let macro of MacroStrategyChecked() | inputSearch: searchFund">
         <div class="title-macro" *ngIf="macro.mainStrategies.length > 0">
           {{ macro.name }}
         </div>
-        <div class="fund-main-strategy" *ngFor="let main of macro.mainStrategies">
+        <div class="fund-main-strategy" *ngFor="let main of MainStrategyChecked(macro)">
           <div class="title-main" *ngIf="main.funds.length > 0">
             {{ main.name }}
           </div>
@@ -62,6 +62,19 @@
     </div>
   </div>
   <div class="cell large-3 medium-2 small-12 columns hide-for-small-only">
-    TODO
+    <div class="category-macro-strategy" *ngFor="let macro of macroStrategyFunds">
+      <label class="title-macro">
+        <input type="checkbox" (click)="MacroStrategyChecked()"
+          [(ngModel)]="macro.checked" [value]="macro.name">
+            {{ macro.name }}
+      </label>
+      <div class="category-main-strategy" *ngFor="let main of macro.mainStrategies">
+        <label class="title-main">
+          <input type="checkbox" (click)="MainStrategyChecked(macro)"
+            [(ngModel)]="macro.checked && main.checked" [value]="main.name">
+              {{ main.name }}
+        </label>
+      </div>
+    </div>
   </div>
 </div>

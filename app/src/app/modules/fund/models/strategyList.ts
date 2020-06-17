@@ -1,9 +1,17 @@
 import { Fund } from './fund';
 
 export class MacroStrategy {
-  constructor(public name: string, public mainStrategies: MainStrategy[]) {}
+  constructor(
+    public name: string, 
+    public checked: boolean,
+    public mainStrategies: MainStrategy[]
+  ) {}
 }
 
 export class MainStrategy {
-  constructor(public name: string, public funds: Fund[]) {}
+  constructor(
+    public name: string, 
+    public checked: boolean,
+    public funds: Fund[]
+  ) {}
 }

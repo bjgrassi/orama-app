@@ -25,7 +25,7 @@ input[type=text] {
       text-align: left;
     }
   }
-  .fund-macro-strategy {
+  .fund-strategies {
     .title-macro {
       font-weight: 700;
       background: #eff0f2;
@@ -42,5 +42,30 @@ input[type=text] {
     display: block;
     padding: 40px;
     text-align: center;
+  }
+}
+
+[type=checkbox] {
+  margin: 0 5px 0 0;
+}
+
+.category-macro-strategy {
+  background: #fff;
+  box-shadow: 6px 6px 25px 0 rgba(97,120,146,0.12);
+  margin-bottom: 30px;
+  label:hover {
+    cursor: pointer;
+  }
+  .title-macro {
+    background: #f4f5f7;
+    font-weight: 700;
+    padding: 3px 15px;
+    text-transform: uppercase;
+  }
+  .title-main {
+    border-bottom: solid 1px #eff0f2;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 15px 3px 35px;
   }
 }

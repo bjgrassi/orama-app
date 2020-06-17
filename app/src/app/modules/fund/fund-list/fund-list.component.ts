@@ -32,9 +32,9 @@ export class FundListComponent implements OnInit {
       let mainStrategy = fund.specification.fund_main_strategy;
       
       if (!strategyList[macroStrategy.id])
-        strategyList[macroStrategy.id] = new Strategies.MacroStrategy(macroStrategy.name, [] as Strategies.MainStrategy[] );
+        strategyList[macroStrategy.id] = new Strategies.MacroStrategy(macroStrategy.name, true, [] as Strategies.MainStrategy[] );
       if (!strategyList[macroStrategy.id].mainStrategies[mainStrategy.id])
-        strategyList[macroStrategy.id].mainStrategies[mainStrategy.id] = new Strategies.MainStrategy(mainStrategy.name, [] as Fund[]);
+        strategyList[macroStrategy.id].mainStrategies[mainStrategy.id] = new Strategies.MainStrategy(mainStrategy.name, true, [] as Fund[]);
       
       strategyList[macroStrategy.id].mainStrategies[mainStrategy.id].funds.push(fund);
     });
@@ -44,6 +44,16 @@ export class FundListComponent implements OnInit {
       macro.mainStrategies.forEach(main => main.funds = main.funds.filter(el => el != null));
     });
     return strategyList;
+  }
+
+  public MacroStrategyChecked() {
+    return this.macroStrategyFunds.filter(macro => {
+      return macro.checked
+    });
+  }
+
+  public MainStrategyChecked(macro) {
+    return macro.mainStrategies.filter(main => main.checked);
   }
   
 }
