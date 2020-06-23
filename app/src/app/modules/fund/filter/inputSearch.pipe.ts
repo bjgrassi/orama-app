@@ -1,19 +1,24 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { MacroStrategy } from '../models/strategyList';
+import { MacroStrategy, MainStrategy } from '../models/strategyList';
+import * as Strategies from '../models/strategyList';
 
 @Pipe({
-  name: 'inputSearch'
+  name: 'inputSearch',
+  pure: false
 })
 
 export class InputSearchPipe implements PipeTransform {
-  public searchedItems: MacroStrategy[];
+  public macro: MacroStrategy;
+  public main: MainStrategy;
+  public searchedItems = [] as Strategies.MacroStrategy[];
+  public simpleName;
 
   transform(list: MacroStrategy[], searchText):  MacroStrategy[] {
     if(!searchText) return list
     
     return list.filter(macro => {
-      return macro.mainStrategies = macro.mainStrategies.filter(main => {
+      return macro.mainStrategies.filter(main => {
         return main.funds = main.funds.filter(fund => { 
           return this.transformText(fund.simple_name, searchText)
         });
