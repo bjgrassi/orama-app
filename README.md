@@ -2,7 +2,9 @@
 ### Web Application made in Angular
 
 ## About
-- TODO
+- Listing funds by macro and main categories
+- Search by funds (Text input)
+- Search by macro and main categories (Checkbox input)
 
 ### Prerequisites
 Node.js - [click for download](https://nodejs.org/en/)
@@ -20,6 +22,7 @@ Clone my repo in your computer
 ```yarn install``` or ```npm install```
 
 Run server
+
 ```cd app```
 
 ```yarn start``` or ```npm start```
