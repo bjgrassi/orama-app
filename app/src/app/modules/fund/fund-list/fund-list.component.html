@@ -1,5 +1,5 @@
 <div class="grid-x grid-padding-x">
-  <div class="cell large-9 medium-9 small-12">
+  <div class="cell large-9 medium-12">
     <div class="input-group">
       <!-- input-focus="searchInput" class="ng-pristine ng-valid ng-empty ng-touched" -->
       <input
@@ -10,14 +10,14 @@
     </div>
     <div class="table">
       <div class="grid-x table-header">
-        <div class="columns small-4 text-left">Fundo</div>
-        <div class="columns small-1">Data da cota</div>
-        <div class="columns small-1">Mês (%)</div>
-        <div class="columns small-1">2020 (%)</div>
-        <div class="columns small-1">12M (%)</div>
-        <div class="columns small-2">Aplicação mínima (R$)</div>
-        <div class="columns small-1">Prazo do resgate</div>
-        <div class="columns small-1">Aplicar</div>
+        <div class="columns medium-4 small-4 text-left">Fundo</div>
+        <div class="columns medium-1 small-3">Data da cota</div>
+        <div class="columns medium-1 show-for-medium">Mês (%)</div>
+        <div class="columns medium-1 show-for-medium">2020 (%)</div>
+        <div class="columns medium-1 show-for-medium">12M (%)</div>
+        <div class="columns medium-2 small-3">Aplicação mínima (R$)</div>
+        <div class="columns medium-1 show-for-medium">Prazo do resgate</div>
+        <div class="columns medium-1 small-2">Aplicar</div>
       </div>
       <div class="fund-strategies" *ngFor="let macro of MacroStrategyChecked() | inputSearch: searchFund">
         <div class="title-macro" *ngIf="macro.mainStrategies.length > 0">
@@ -28,29 +28,34 @@
             {{ main.name }}
           </div>
           <div class="grid-x" *ngFor="let item of main.funds">
-            <div class="columns small-4 text-left">{{ item.simple_name }}</div>
-            <div class="columns small-1">{{ item.quota_date | date: 'shortDate' }}</div>
-            <div class="columns small-1">{{ item.profitabilities.month | number : '1.2-2' }}</div>
-            <div class="columns small-1">{{ item.profitabilities.year | number : '1.2-2' }}</div>
-            <div class="columns small-1">{{ item.profitabilities.m12 | number : '1.2-2' }}</div>
-            <div class="columns small-2">{{ item.operability.minimum_initial_application_amount | number:'0.2':'pt' }}</div>
-            <div class="columns small-1 mdi-reply-circle">
-              <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
-              </svg>
+            <div class="columns medium-4 small-4 text-left">
+              {{ item.simple_name }} 
+              <span class="isQualified" *ngIf="item.specification.is_qualified">
+                <i class="fa fa-certificate" aria-hidden="true"></i>
+              </span>
+              <p class="fund-type">{{ macro.name }} | {{ item.specification.fund_class }}</p>
+            </div>
+            <div class="columns medium-1 small-3">{{ item.quota_date | date: 'shortDate' }}</div>
+            <div class="columns medium-1 show-for-medium">{{ item.profitabilities.month | number : '1.2-2' }}</div>
+            <div class="columns medium-1 show-for-medium">{{ item.profitabilities.year | number : '1.2-2' }}</div>
+            <div class="columns medium-1 show-for-medium">{{ item.profitabilities.m12 | number : '1.2-2' }}</div>
+            <div class="columns medium-2 small-3">{{ item.operability.minimum_initial_application_amount | number:'0.2':'pt' }}</div>
+            <div class="columns medium-1 show-for-medium info-hover">
+              <i class="fa fa-info-circle i-font i-style" aria-hidden="true"></i>
+              <span>
+                <strong>Dias para a conversão do resgate:</strong>
+                3º dia útil anterior ao último dia útil do 2º mês.
+                Calendário subsequente à solicitação de resgate
+              </span>
             </div>
             <ng-container *ngIf="item.is_closed; else elseTemplate">
-              <div class="columns small-1">
-                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M2 12C2 17.5 6.5 22 12 22S22 17.5 22 12 17.5 2 12 2 2 6.5 2 12M5 11L10 6V9C15.06 9.73 17.28 13.33 18 17C16.19 14.43 13.61 13 10 13V16L5 11Z" />
-                </svg>
+              <div class="columns medium-1 small-2">
+                <i class="fa fa-reply i-font" aria-hidden="true"></i>
               </div>
             </ng-container>
             <ng-template #elseTemplate>
-              <div class="columns small-1">
-                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M8.27,3L3,8.27V15.73L8.27,21H15.73C17.5,19.24 21,15.73 21,15.73V8.27L15.73,3M9.1,5H14.9L19,9.1V14.9L14.9,19H9.1L5,14.9V9.1M9.12,7.71L7.71,9.12L10.59,12L7.71,14.88L9.12,16.29L12,13.41L14.88,16.29L16.29,14.88L13.41,12L16.29,9.12L14.88,7.71L12,10.59" />
-                </svg>
+              <div class="columns medium-1 small-2">
+                <i class="fa fa-times-circle i-font" aria-hidden="true"></i>
               </div>
             </ng-template>
           </div>
@@ -61,7 +66,7 @@
       </div>
     </div>
   </div>
-  <div class="cell large-3 medium-2 small-12 columns hide-for-small-only">
+  <div class="cell large-3 medium-2 small-12 columns show-for-large">
     <div class="category-macro-strategy" *ngFor="let macro of macroStrategyFunds">
       <label class="title-macro">
         <input type="checkbox" (click)="MacroStrategyChecked()"

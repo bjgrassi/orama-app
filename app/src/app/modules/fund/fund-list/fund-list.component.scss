@@ -18,11 +18,18 @@ input[type=text] {
 }
 
 .table {
+  font-size: small;
+  .table-header {
+    font-weight: 700;
+  }
   .columns {
     padding: 10px;
     text-align: right;
     &.text-left {
       text-align: left;
+    }
+    .fund-type {
+      color: #757678;
     }
   }
   .fund-strategies {
@@ -36,6 +43,49 @@ input[type=text] {
       font-weight: 700;
       background: #f4f5f7;
       padding: 10px;
+    }
+    .i-font {
+      font-size: 20px;
+    }
+    .isQualified i {
+      color: #639d31;
+      position: relative;
+      &:hover:after {
+        background: rgba(0,0,0,0.8);
+        bottom: 17px;
+        color: #fff;
+        content: 'Fundo para investidor qualificado';
+        left: -60px;
+        padding: .4rem .8rem;
+        position: absolute;
+        text-align: center;
+        width: 140px;
+      }
+    }
+    .i-style {
+      background: #505152;
+      border-radius: 30px;
+      color: white;
+      padding: 0px 2px;
+    }
+    .info-hover {
+      position: relative;
+      span {
+        display: none;
+      }
+      &:hover span {
+        background: #fff;
+        border: 1px solid #505152;
+        border-radius: 3px;
+        color: #505152;
+        display: block;
+        left: -60px;
+        padding: .8rem;
+        position: absolute;
+        text-align: center;
+        width: 240px;
+        z-index: 2;
+      }
     }
   }
   .preloader {
@@ -51,6 +101,23 @@ input[type=text] {
   margin-bottom: 30px;
   label:hover {
     cursor: pointer;
+  }
+  input[type=checkbox] {
+    margin: 0 5px 0 0;
+    position: relative;
+    &:after {
+      content: "";
+      text-align: center;
+    }
+    &:checked:after {
+      background-color: #119c9f;
+      border-radius: 2px;
+      content: "\2714";
+      color: #fff;
+      font-size: smaller;
+      padding: 1px 2px 1px 3px;
+      position: absolute;
+    }
   }
   .title-macro {
     background: #f4f5f7;
