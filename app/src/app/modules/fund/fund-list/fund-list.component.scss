@@ -72,6 +72,21 @@ input[type=text] {
       position: relative;
       span {
         display: none;
+        i {
+          color: white;
+          font-size: 15px;
+          left: 51%;
+          position: absolute;
+          top: -11px;
+        }
+        &:before {
+          border: 7px solid;
+          border-color: transparent transparent #505152 transparent;
+          content: '';
+          left: 50%;
+          top: -14px;
+          position: absolute;
+        }
       }
       &:hover span {
         background: #fff;
@@ -79,12 +94,13 @@ input[type=text] {
         border-radius: 3px;
         color: #505152;
         display: block;
-        left: -60px;
+        left: calc(-50% - 25px);
         padding: .8rem;
         position: absolute;
-        text-align: center;
+        text-align: left;
+        top: 50%;
         width: 240px;
-        z-index: 2;
+        z-index: 1;
       }
     }
   }
